@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ether Gazette — June 30, 2026</title>
+<style>
+  :root{
+    --bg: #121212;
+    --bg-panel: #1b1b1e;
+    --bg-panel-2: #202024;
+    --ink: #e8e6e1;
+    --ink-dim: #b7b3aa;
+    --rule: #3a3733;
+    --accent: #c9a96a;
+    --accent-2: #7fb3a3;
+    --red: #c0524a;
+    --green: #4f9d6c;
+    --link: #d8b06a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 18px 60px;
+  }
+  header.masthead{
+    text-align:center;
+    border-bottom:4px double var(--rule);
+    padding:28px 10px 14px;
+    margin-bottom:6px;
+  }
+  .kicker{
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    font-size:0.7rem;
+    color:var(--ink-dim);
+    font-family: Georgia, serif;
+    margin-bottom:10px;
+  }
+  h1.title{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight:700;
+    font-size:clamp(2.1rem, 8vw, 3.4rem);
+    letter-spacing:0.02em;
+    margin:0;
+    color:var(--ink);
+    text-shadow: 0 0 18px rgba(201,169,106,0.15);
+  }
+  .subhead{
+    margin-top:10px;
+    font-style:italic;
+    color:var(--ink-dim);
+    font-size:0.95rem;
+  }
+  .dateline{
+    margin-top:14px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:6px 16px;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--accent);
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    padding:8px 4px;
+  }
+
+  section.section{
+    margin-top:38px;
+  }
+  .section-head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:16px;
+  }
+  .section-head h2{
+    font-size:1.05rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0;
+    white-space:nowrap;
+  }
+  .section-head .rule{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--rule), transparent);
+  }
+  .section-icon{font-size:1.1rem;}
+
+  .story{
+    margin-bottom:22px;
+    padding-bottom:18px;
+    border-bottom:1px solid var(--rule);
+  }
+  .story:last-child{border-bottom:none;}
+  .story h3{
+    margin:0 0 8px;
+    font-size:1.25rem;
+    line-height:1.3;
+    color:var(--ink);
+  }
+  .story p{
+    margin:0 0 8px;
+    color:var(--ink-dim);
+    font-size:0.97rem;
+  }
+  .story a, .story-source a{
+    color:var(--link);
+    text-decoration:none;
+    border-bottom:1px solid rgba(216,176,106,0.4);
+  }
+  .story a:hover{border-bottom-color:var(--link);}
+  .story-source{
+    font-size:0.8rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--accent-2);
+  }
+
+  .event-card{
+    background:var(--bg-panel);
+    border:1px solid var(--rule);
+    border-left:3px solid var(--accent-2);
+    border-radius:4px;
+    padding:14px 16px;
+    margin-bottom:14px;
+  }
+  .event-card h3{margin:0 0 6px;font-size:1.05rem;color:var(--ink);}
+  .event-meta{font-size:0.88rem;color:var(--ink-dim);margin:2px 0;}
+  .badge{
+    display:inline-block;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    padding:2px 8px;
+    border-radius:10px;
+    margin-left:6px;
+    vertical-align:middle;
+  }
+  .badge-free{background:rgba(79,157,108,0.18);color:var(--green);border:1px solid rgba(79,157,108,0.5);}
+  .badge-paid{background:rgba(192,82,74,0.15);color:#d98d86;border:1px solid rgba(192,82,74,0.4);}
+  .badge-shortage{background:rgba(192,82,74,0.15);color:#d98d86;border:1px solid rgba(192,82,74,0.4);}
+  .badge-resolved{background:rgba(79,157,108,0.18);color:var(--green);border:1px solid rgba(79,157,108,0.5);}
+  .badge-partial{background:rgba(201,169,106,0.18);color:var(--accent);border:1px solid rgba(201,169,106,0.5);}
+
+  .citation{
+    background:var(--bg-panel);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    padding:12px 14px;
+    font-size:0.85rem;
+    color:var(--ink-dim);
+    font-style:italic;
+    margin-top:10px;
+  }
+
+  .pearl-box{
+    background:linear-gradient(145deg, var(--bg-panel), var(--bg-panel-2));
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:18px 18px;
+  }
+  .pearl-box p{margin:0 0 10px;color:var(--ink-dim);}
+  .pearl-box p:last-child{margin-bottom:0;}
+
+  .history-box{
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+    background:var(--bg-panel);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:16px;
+  }
+  .history-date{
+    font-weight:bold;
+    color:var(--accent);
+    white-space:nowrap;
+    font-size:0.95rem;
+    border-right:1px solid var(--rule);
+    padding-right:14px;
+    min-width:90px;
+  }
+  .history-box p{margin:0;color:var(--ink-dim);}
+
+  table.shortage-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:0.88rem;
+  }
+  table.shortage-table th{
+    text-align:left;
+    color:var(--accent);
+    text-transform:uppercase;
+    font-size:0.72rem;
+    letter-spacing:0.05em;
+    border-bottom:1px solid var(--rule);
+    padding:6px 8px;
+  }
+  table.shortage-table td{
+    padding:8px 8px;
+    border-bottom:1px solid var(--rule);
+    color:var(--ink-dim);
+    vertical-align:top;
+  }
+  table.shortage-table tr:last-child td{border-bottom:none;}
+  .drug-name{color:var(--ink);font-weight:bold;}
+
+  /* Quiz */
+  .quiz-box{
+    background:var(--bg-panel);
+    border:1px solid var(--rule);
+    border-radius:8px;
+    padding:20px;
+  }
+  .quiz-stem{
+    font-size:1.05rem;
+    margin-bottom:16px;
+    color:var(--ink);
+  }
+  .quiz-choices{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .quiz-choice{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    width:100%;
+    text-align:left;
+    background:var(--bg-panel-2);
+    border:1px solid var(--rule);
+    color:var(--ink);
+    font-family:inherit;
+    font-size:1rem;
+    padding:14px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    min-height:52px;
+    transition:transform 0.08s ease, background 0.2s ease, border-color 0.2s ease;
+  }
+  .quiz-choice:hover:not(:disabled){
+    border-color:var(--accent);
+    background:#26262a;
+  }
+  .quiz-choice:active:not(:disabled){transform:scale(0.99);}
+  .quiz-choice:disabled{cursor:default;}
+  .choice-letter{
+    flex:0 0 auto;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    border:1px solid var(--rule);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.85rem;
+    font-weight:bold;
+    color:var(--ink-dim);
+  }
+  .quiz-choice.correct{
+    background:rgba(79,157,108,0.22);
+    border-color:var(--green);
+  }
+  .quiz-choice.correct .choice-letter{background:var(--green);color:#0c1f14;border-color:var(--green);}
+  .quiz-choice.incorrect{
+    background:rgba(192,82,74,0.22);
+    border-color:var(--red);
+  }
+  .quiz-choice.incorrect .choice-letter{background:var(--red);color:#2a0c0a;border-color:var(--red);}
+
+  .quiz-feedback{
+    margin-top:10px;
+    font-weight:bold;
+    font-size:1rem;
+    min-height:1.4em;
+  }
+  .quiz-feedback.right{color:var(--green);}
+  .quiz-feedback.wrong{color:#d98d86;}
+
+  .rationale{
+    margin-top:14px;
+    background:var(--bg-panel-2);
+    border-left:3px solid var(--accent);
+    border-radius:4px;
+    padding:14px 16px;
+    font-size:0.92rem;
+    color:var(--ink-dim);
+    display:none;
+  }
+  .rationale.show{display:block;}
+  .rationale strong{color:var(--ink);}
+
+  .reset-btn{
+    margin-top:14px;
+    background:none;
+    border:1px solid var(--rule);
+    color:var(--ink-dim);
+    padding:8px 16px;
+    border-radius:6px;
+    font-family:inherit;
+    font-size:0.85rem;
+    cursor:pointer;
+    display:none;
+  }
+  .reset-btn.show{display:inline-block;}
+  .reset-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+  footer{
+    margin-top:50px;
+    border-top:1px solid var(--rule);
+    padding-top:18px;
+    text-align:center;
+    color:var(--ink-dim);
+    font-size:0.78rem;
+    letter-spacing:0.04em;
+  }
+
+  @media (max-width:480px){
+    .wrap{padding:0 12px 40px;}
+    .dateline{font-size:0.7rem;flex-direction:column;}
+    .history-box{flex-direction:column;}
+    .history-date{border-right:none;border-bottom:1px solid var(--rule);padding-right:0;padding-bottom:8px;}
+    table.shortage-table{font-size:0.8rem;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">A Weekly Dispatch for the Student Registered Nurse Anesthetist</div>
+    <h1 class="title">THE ETHER GAZETTE</h1>
+    <div class="subhead">"Vigilance, distilled." — TEST ISSUE</div>
+    <div class="dateline">
+      <span>Week of June 30, 2026</span>
+      <span>Vol. 1, No. 0 (Pilot)</span>
+      <span>Est. 2026</span>
+    </div>
+  </header>
+
+  <!-- HEADLINES -->
+  <section class="section" id="headlines">
+    <div class="section-head"><span class="section-icon">📰</span><h2>Headlines</h2><div class="rule"></div></div>
+
+    <div class="story">
+      <h3>Ohio Modernizes CRNA Practice Law, Ditches "Supervision" Standard</h3>
+      <p>Ohio's House Bill 52 took effect June 8, replacing the state's decades-old requirement that CRNAs practice under physician "supervision" with a new collaboration model. CRNAs may now provide care at the request of a physician, podiatrist, or dentist, though a collaborating provider must still be physically present for critical portions of anesthesia care. The bill was sponsored by state Rep. Kellie Deeter, herself a practicing CRNA, and supporters say it will widen access to anesthesia care in rural Ohio.</p>
+      <div class="story-source">AANA &middot; <a href="https://www.aana.com/news/modernized-crna-practice-law-secured-for-ohio-crnas/" target="_blank" rel="noopener">Modernized CRNA Practice Law Secured for Ohio CRNAs</a></div>
+    </div>
+
+    <div class="story">
+      <h3>Multistate Coalition of Attorneys General Sues to Block California's CRNA Law</h3>
+      <p>A coalition of attorneys general from roughly two dozen states, joined by the governors of Kentucky and Pennsylvania, filed suit in May challenging California's AB 876, which reaffirmed CRNAs' authority to deliver anesthesia care independently. The California Association of Nurse Anesthesiology frames the lawsuit as an attack on nursing education pathways, and CANA President Kristen Roman has publicly defended the law — a fight industry watchers expect to ripple well beyond California's borders.</p>
+      <div class="story-source">CANA &middot; <a href="https://canainc.org/cana-responds-to-california-attorney-general-bonta-and-multistate-coalition-for-defending-student-loan-pathways-for-nurses/" target="_blank" rel="noopener">CANA Responds to Multistate Coalition</a></div>
+    </div>
+
+    <div class="story">
+      <h3>ASA Issues 2026 Guideline Pushing Nerve Blocks Over Opioids</h3>
+      <p>The American Society of Anesthesiologists released new practice guidelines strongly recommending fascial plane and peripheral nerve blocks for major cardiothoracic, abdominal, retroperitoneal, pelvic, and mastectomy surgery to reduce pain and opioid consumption in the first 24 postoperative hours. Pooled evidence showed roughly a 19 mg oral-morphine-equivalent reduction in opioid use, though the task force cautioned that the underlying trials were often small and methodologically uneven. Pediatric recommendations for open cardiac and thoracic cases were also strengthened.</p>
+      <div class="story-source">NYSORA &middot; <a href="https://www.nysora.com/education-news/new-asa-recommendations-for-surgical-pain-relief/" target="_blank" rel="noopener">New ASA Recommendations for Surgical Pain Relief</a></div>
+    </div>
+
+    <div class="story">
+      <h3>CMS's 2026 Anesthesia Pay Bump Largely Erased by Hidden Cuts, ASA Warns</h3>
+      <p>CMS's CY2026 Medicare Physician Fee Schedule set the anesthesia conversion factor at $20.4976 — up just 0.88% despite a statutory 2.5% increase mandated by recent federal legislation. ASA says a new across-the-board "efficiency adjustment" and a roughly 7% cut to facility-based practice-expense payments wiped out most of the intended gain, while CMS also trimmed the anesthesia quality-measure set used for incentive payments.</p>
+      <div class="story-source">ASA &middot; <a href="https://www.asahq.org/advocacy-and-asapac/fda-and-washington-alerts/washington-alerts/2025/10/cms-finalizes-policies-undermining-anesthesia-payments-and-ability-for-anesthesiologists-to-meaningfully-participate-in-the-quality-payment-program" target="_blank" rel="noopener">CMS Finalizes Policies Undermining Anesthesia Payments</a></div>
+    </div>
+  </section>
+
+  <!-- WEBINARS -->
+  <section class="section" id="webinars">
+    <div class="section-head"><span class="section-icon">🎓</span><h2>Upcoming Webinars</h2><div class="rule"></div></div>
+
+    <div class="event-card">
+      <h3>Do We Need to Treat Acute Pain with Regenerative Medicine? Pros and Cons <span class="badge badge-free">Free CE</span></h3>
+      <div class="event-meta">Host: ASRA Pain Medicine</div>
+      <div class="event-meta">Tuesday, July 14, 2026 &middot; 4:00–5:00 PM ET &middot; 1.0 AMA PRA Category 1 Credit&trade;</div>
+      <div class="event-meta"><a href="https://members.asra.com/events/event-registration/?id=3faeed97-5d6a-f111-9b48-7c1e52a0ebef" target="_blank" rel="noopener">Register →</a></div>
+    </div>
+
+    <div class="event-card">
+      <h3>Methadone &amp; Dexmedetomidine in the Perioperative Period: Global Practices and Controversies <span class="badge badge-free">Free to attend</span></h3>
+      <div class="event-meta">Host: IARS (International Anesthesia Research Society)</div>
+      <div class="event-meta">Tuesday, July 14, 2026 &middot; 4:30–6:00 PM ET &middot; CME available for IARS members</div>
+      <div class="event-meta"><a href="https://iars.org/cme-webinars/" target="_blank" rel="noopener">Register →</a></div>
+    </div>
+
+    <div class="event-card">
+      <h3>Brain Guardians: The Anesthesiologist's Role in Optimizing Brain Protection in Older Adults <span class="badge badge-free">Free to attend</span></h3>
+      <div class="event-meta">Host: IARS</div>
+      <div class="event-meta">Tuesday, August 11, 2026 &middot; 4:00–5:00 PM ET &middot; CME available for IARS members</div>
+      <div class="event-meta"><a href="https://iars.org/cme-webinars/" target="_blank" rel="noopener">Register →</a></div>
+    </div>
+
+    <div class="event-card">
+      <h3>Updates in Anesthesia Practice (live conference) <span class="badge badge-paid">Paid</span></h3>
+      <div class="event-meta">Host: Northwest Anesthesia Seminars</div>
+      <div class="event-meta">August 11–14, 2026 &middot; daily sessions 6:55 AM–12:20 PM PT &middot; 20.0 CME/CEC credits</div>
+      <div class="event-meta">$745 regular / $795 late / $200 per day</div>
+      <div class="event-meta"><a href="https://nwas2.northwestseminars.com/webinar/view/UpdatesinAnesthesiaPractice/V0tqbw" target="_blank" rel="noopener">Register →</a></div>
+    </div>
+
+    <p style="font-size:0.85rem;color:var(--ink-dim);font-style:italic;">Editor's note: AANA's webinar calendar and ASA's "Webinar Wednesday" series add new dates on a rolling basis — check <a href="https://www.aana.com/ce/" target="_blank" rel="noopener" style="color:var(--link);">aana.com/ce</a> and <a href="https://asahq.org" target="_blank" rel="noopener" style="color:var(--link);">asahq.org</a> directly for anything newly posted inside this six-week window.</p>
+  </section>
+
+  <!-- LITERATURE -->
+  <section class="section" id="literature">
+    <div class="section-head"><span class="section-icon">📚</span><h2>From the Literature</h2><div class="rule"></div></div>
+    <div class="story">
+      <h3>One Syringe, Two Drugs: Single-Syringe TIVA Put to the Test</h3>
+      <p>Researchers at the University of Utah tested mixing propofol and remifentanil together in a single syringe — rather than running them on separate pumps — for total intravenous anesthesia during outpatient orthopedic surgery. Across 109 patients, the technique kept hypnotic depth in the target range (Patient State Index 25–50) for at least 70% of maintenance time in 77% of cases, with zero episodes of intraoperative awareness. Nearly half the patients needed a vasoactive drug to support blood pressure, and postoperative nausea/vomiting or transient delirium occurred in a small minority. For SRNAs, the appeal is a simpler pump setup with less tubing — the trade-off is that once mixed, the propofol-to-remifentanil ratio is fixed, so you lose the ability to titrate each drug independently and must stay alert for hemodynamic instability.</p>
+      <div class="citation">Bennion, N., Brower, T. S., Ballard, C. R., Steenblik, J., Lee, K. H., Egan, T. D., Swenson, J. D., Pace, N. L., &amp; Johnson, K. B. (2025). Single-syringe total intravenous anesthesia with propofol and remifentanil: A prospective cohort study. <em>Anesthesia &amp; Analgesia, 141</em>(6), 1230–1233. https://doi.org/10.1213/ANE.0000000000007581</div>
+      <p style="margin-top:10px;"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12588638/" target="_blank" rel="noopener">Read the full text (PMC) →</a></p>
+      <p style="font-size:0.8rem;color:var(--accent-2);">Published online May 2025 / print December 2025 — well within the five-year recency window. No flag.</p>
+    </div>
+  </section>
+
+  <!-- LEGISLATION -->
+  <section class="section" id="legislation">
+    <div class="section-head"><span class="section-icon">⚖️</span><h2>Legislation &amp; Scope Tracker</h2><div class="rule"></div></div>
+
+    <div class="story">
+      <h3>West Virginia Drops Physician-Supervision Requirement for CRNAs</h3>
+      <p>Gov. Patrick Morrisey signed SB 810 on April 30, replacing the requirement that CRNAs practice "in the presence and under the supervision" of a physician, dentist, or podiatrist with a team-based "cooperation" model. The law took effect July 7, 2025. AANA now counts 44 state legislatures that have determined physician supervision is unnecessary under nursing law — significant in West Virginia, where roughly 75% of anesthesia providers are CRNAs, concentrated in rural hospitals.</p>
+      <div class="story-source">AANA &middot; <a href="https://www.aana.com/news/west-virginia-recognizes-autonomy-of-crnas-with-new-state-law/" target="_blank" rel="noopener">West Virginia Recognizes Autonomy of CRNAs</a></div>
+    </div>
+
+    <div class="story">
+      <h3>Florida's HB 375 Would Let CRNAs Register as "Autonomous" APRNs</h3>
+      <p>Filed for Florida's 2026 legislative session, HB 375 would allow CRNAs to register as autonomous advanced practice registered nurses under existing state law, practicing without an onsite physician-supervision protocol. As of a January 21, 2026 staff analysis, the bill had cleared its first House committee with a proposed effective date of July 1, 2026 — but final passage was not yet confirmed at publication time. Status should be verified before this date is treated as settled.</p>
+      <div class="story-source">Florida House of Representatives &middot; <a href="https://www.flsenate.gov/Session/Bill/2026/375/Analyses/h0375a.HPP.PDF" target="_blank" rel="noopener">HB 375 Bill Analysis</a></div>
+    </div>
+
+    <div class="story">
+      <h3>Medicare Opt-Out Count Climbs to 25 States Plus Guam</h3>
+      <p>The federal rule letting state governors waive Medicare's physician-supervision requirement for CRNAs — in place since 2001 — has now been exercised by 25 states and Guam, including recent additions Delaware (2023) and Massachusetts (2024). That's notably higher than the "19–20 states" figure still widely circulated online. Opt-out status is distinct from full practice authority under a state's own nurse practice act: a state can opt out of the federal Medicare rule while state law still imposes its own supervision requirements.</p>
+      <div class="story-source">AANA &middot; <a href="https://www.aana.com/practice/practice-in-your-state/" target="_blank" rel="noopener">Practice in Your State</a> &middot; <a href="https://www.asahq.org/advocacy-and-asapac/advocacy-topics/opt-outs" target="_blank" rel="noopener">ASA: Opt-Outs</a></div>
+    </div>
+  </section>
+
+  <!-- FDA SHORTAGES -->
+  <section class="section" id="shortages">
+    <div class="section-head"><span class="section-icon">💊</span><h2>FDA Drug Shortage Watch</h2><div class="rule"></div></div>
+    <p style="font-size:0.85rem;color:var(--ink-dim);">Compiled from the ASHP/FDA shortage databases as of late June 2026. Status can change quickly — confirm at the source links before clinical decision-making.</p>
+    <table class="shortage-table">
+      <thead>
+        <tr><th>Drug</th><th>Status</th><th>Note</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="drug-name">Propofol</td>
+          <td><span class="badge badge-shortage">Active</span></td>
+          <td>Dr. Reddy's discontinued its line in early 2026; Fresenius Kabi (Diprivan) remains the primary supplier. <a href="https://www.ashp.org/drug-shortages/current-shortages/drug-shortage-detail.aspx?id=651" target="_blank" rel="noopener">ASHP →</a></td>
+        </tr>
+        <tr>
+          <td class="drug-name">Succinylcholine</td>
+          <td><span class="badge badge-partial">Partial</span></td>
+          <td>Accord, Amneal, Sagent discontinued; Meitheal &amp; Pfizer (Quelicin) report delays. Several other makers still supplying. <a href="https://www.ashp.org/drug-shortages/current-shortages/drug-shortage-detail.aspx?id=1039" target="_blank" rel="noopener">ASHP →</a></td>
+        </tr>
+        <tr>
+          <td class="drug-name">Etomidate</td>
+          <td><span class="badge badge-shortage">Active</span></td>
+          <td>Unavailable due to increased demand; additional lots expected around July 2026. <a href="https://www.drugs.com/drug-shortages/etomidate-injection-84" target="_blank" rel="noopener">Drugs.com →</a></td>
+        </tr>
+        <tr>
+          <td class="drug-name">Vecuronium</td>
+          <td><span class="badge badge-shortage">Active</span></td>
+          <td>Hikma on back order with no 2026 release date; Sun Pharma discontinued its 20mg vial. <a href="https://www.ashp.org/drug-shortages/current-shortages/drug-shortage-detail.aspx?id=167" target="_blank" rel="noopener">ASHP →</a></td>
+        </tr>
+        <tr>
+          <td class="drug-name">Rocuronium</td>
+          <td><span class="badge badge-resolved">Resolved</span></td>
+          <td>Indexed as resolved in current ASHP data. <a href="https://www.ashp.org/drug-shortages/current-shortages/drug-shortage-detail.aspx?id=290" target="_blank" rel="noopener">ASHP →</a></td>
+        </tr>
+        <tr>
+          <td class="drug-name">Cisatracurium</td>
+          <td><span class="badge badge-resolved">Resolved</span></td>
+          <td>Listed as resolved; verify locally before relying on it as backup for vecuronium shortfalls. <a href="https://www.ashp.org/drug-shortages/current-shortages" target="_blank" rel="noopener">ASHP →</a></td>
+        </tr>
+        <tr>
+          <td class="drug-name">Vasopressin</td>
+          <td><span class="badge badge-partial">Partial</span></td>
+          <td>Baxter premixed bags on back order; American Regent, Amneal, Amphastar, Fresenius Kabi, and Sagent report availability. <a href="https://www.ashp.org/drug-shortages/current-shortages/drug-shortage-detail.aspx?id=1043" target="_blank" rel="noopener">ASHP →</a></td>
+        </tr>
+        <tr>
+          <td class="drug-name">Bupivacaine</td>
+          <td><span class="badge badge-shortage">Active</span></td>
+          <td>Ongoing since 2023; 0.75% preservative-free vials hit hardest. ASA has issued a neuraxial shortage/alternatives statement. <a href="https://www.ashp.org/drug-shortages/current-shortages/drug-shortage-detail.aspx?id=172" target="_blank" rel="noopener">ASHP →</a></td>
+        </tr>
+        <tr>
+          <td class="drug-name">Lidocaine (injectable)</td>
+          <td><span class="badge badge-shortage">Active</span></td>
+          <td>Pfizer back order from manufacturing delays and demand surge; only two US makers of injectable lidocaine. <a href="https://www.ashp.org/drug-shortages/current-shortages/drug-shortage-detail.aspx?id=88" target="_blank" rel="noopener">ASHP →</a></td>
+        </tr>
+        <tr>
+          <td class="drug-name">Ropivacaine</td>
+          <td><span class="badge badge-resolved">No shortage</span></td>
+          <td>Not currently listed; increasingly used as a substitute when bupivacaine is short.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- KNOWLEDGE PEARL -->
+  <section class="section" id="pearl">
+    <div class="section-head"><span class="section-icon">💡</span><h2>Knowledge Pearl</h2><div class="rule"></div></div>
+    <div class="pearl-box">
+      <p><strong style="color:var(--ink);">Local Anesthetic Systemic Toxicity (LAST) — the "lipid sink."</strong> When a local anesthetic crosses into the systemic circulation in toxic concentration (intravascular injection, overdose, or rapid absorption from a highly vascular block site), it can produce CNS signs first — perioral tingling, metallic taste, tinnitus, agitation, progressing to seizure — followed by cardiovascular collapse: conduction blockade, ventricular arrhythmias, and refractory cardiac arrest. Bupivacaine is the most cardiotoxic agent in common use because of its high lipid solubility and slow dissociation from cardiac sodium channels.</p>
+      <p>Per the ASRA Pain Medicine checklist (last formally updated 2020, still the current standard as of this issue), first-line treatment alongside airway management and seizure suppression is 20% intravenous lipid emulsion: a bolus of 1.5 mL/kg (ideal body weight) over 2–3 minutes for patients under 70 kg, followed by an infusion at 0.25 mL/kg/min, with a recommended upper limit of 12 mL/kg. The leading theory of action is the "lipid sink" — the infused lipid creates an expanded intravascular lipid phase that sequesters the lipophilic local anesthetic away from cardiac and neural tissue, restoring sodium-channel function and hemodynamic stability. Propofol is <em>not</em> an acceptable substitute for lipid emulsion — its lipid content is too low and its cardiodepressant effects make a bad situation worse.</p>
+    </div>
+  </section>
+
+  <!-- HISTORY -->
+  <section class="section" id="history">
+    <div class="section-head"><span class="section-icon">🕰️</span><h2>This Week in Anesthesia History</h2><div class="rule"></div></div>
+    <div class="history-box">
+      <div class="history-date">June 25, 1800</div>
+      <p>Humphry Davy completed his introduction to <em>Researches, Chemical and Philosophical</em>, the work in which he documented self-experimentation with nitrous oxide and explicitly proposed that it "may probably be used with advantage during surgical operations." Davy was 21 years old, and his suggestion went almost entirely unheeded by surgeons of the day. It would take another 44 years — until Horace Wells's 1844 demonstration — before anyone seriously tested nitrous oxide as a surgical anesthetic, a reminder that the gap between a good idea and clinical adoption can span generations.</p>
+    </div>
+  </section>
+
+  <!-- BOARD QUESTION -->
+  <section class="section" id="quiz">
+    <div class="section-head"><span class="section-icon">🧠</span><h2>Board Question of the Week</h2><div class="rule"></div></div>
+    <div class="quiz-box">
+      <div class="quiz-stem">
+        During a general anesthetic with succinylcholine for induction, a patient develops tachycardia and, several minutes later, a steadily rising end-tidal CO<sub>2</sub> despite an unchanged minute ventilation. Which of the following is the <strong>earliest and most reliable</strong> sign of malignant hyperthermia?
+      </div>
+      <div class="quiz-choices" id="quiz-choices">
+        <button class="quiz-choice" data-correct="false" data-key="A">
+          <span class="choice-letter">A</span>
+          <span>Masseter muscle rigidity after succinylcholine</span>
+        </button>
+        <button class="quiz-choice" data-correct="false" data-key="B">
+          <span class="choice-letter">B</span>
+          <span>Core temperature above 39&deg;C</span>
+        </button>
+        <button class="quiz-choice" data-correct="true" data-key="C">
+          <span class="choice-letter">C</span>
+          <span>Unexplained rise in end-tidal CO<sub>2</sub> despite stable ventilation</span>
+        </button>
+        <button class="quiz-choice" data-correct="false" data-key="D">
+          <span class="choice-letter">D</span>
+          <span>Sinus tachycardia</span>
+        </button>
+      </div>
+      <div class="quiz-feedback" id="quiz-feedback"></div>
+      <div class="rationale" id="quiz-rationale">
+        <p><strong>Correct answer: C — Rising end-tidal CO<sub>2</sub>.</strong> Malignant hyperthermia is a hypermetabolic crisis driven by uncontrolled calcium release from skeletal muscle sarcoplasmic reticulum (classically via a ryanodine receptor, RYR1, defect) in genetically susceptible patients exposed to a volatile agent or succinylcholine. That hypermetabolism drives CO<sub>2</sub> production up before any other monitor changes, so a steadily climbing EtCO<sub>2</sub> despite unchanged ventilation is the earliest and most sensitive bedside indicator — it typically appears before temperature even begins to rise.</p>
+        <p><strong>Why the other choices are wrong:</strong> Masseter rigidity (A) can follow succinylcholine and may herald MH, but it is neither universal nor specific — mild jaw tightening occurs in some patients with no MH at all. Hyperthermia (B) is, despite the syndrome's name, a comparatively <em>late</em> finding — temperature often doesn't rise until well after hypercarbia and tachycardia are already underway. Tachycardia (D) is frequently the very first thing anesthesia providers notice, but it is nonspecific — light anesthesia, pain, hypovolemia, and dozens of other causes produce it just as readily, so it cannot be relied on to distinguish MH from routine intraoperative tachycardia.</p>
+      </div>
+      <button class="reset-btn" id="quiz-reset">Try Again</button>
+    </div>
+  </section>
+
+  <footer>
+    THE ETHER GAZETTE &middot; A test issue, compiled for editorial review &middot; Not medical advice — verify all clinical and regulatory content against primary sources before acting on it.
+  </footer>
+</div>
+
+<script>
+(function(){
+  var choices = document.querySelectorAll('.quiz-choice');
+  var feedback = document.getElementById('quiz-feedback');
+  var rationale = document.getElementById('quiz-rationale');
+  var resetBtn = document.getElementById('quiz-reset');
+  var answered = false;
+
+  function lockChoices(){
+    choices.forEach(function(btn){ btn.disabled = true; });
+  }
+
+  function unlockChoices(){
+    choices.forEach(function(btn){
+      btn.disabled = false;
+      btn.classList.remove('correct','incorrect');
+    });
+  }
+
+  choices.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if (answered) return;
+      answered = true;
+
+      var isCorrect = btn.getAttribute('data-correct') === 'true';
+
+      if (isCorrect) {
+        btn.classList.add('correct');
+        feedback.textContent = 'Correct — well done.';
+        feedback.className = 'quiz-feedback right';
+      } else {
+        btn.classList.add('incorrect');
+        feedback.textContent = 'Not quite.';
+        feedback.className = 'quiz-feedback wrong';
+        choices.forEach(function(other){
+          if (other.getAttribute('data-correct') === 'true') {
+            other.classList.add('correct');
+          }
+        });
+      }
+
+      rationale.classList.add('show');
+      resetBtn.classList.add('show');
+      lockChoices();
+    });
+  });
+
+  resetBtn.addEventListener('click', function(){
+    answered = false;
+    unlockChoices();
+    feedback.textContent = '';
+    feedback.className = 'quiz-feedback';
+    rationale.classList.remove('show');
+    resetBtn.classList.remove('show');
+  });
+})();
+</script>
+</body>
+</html>
