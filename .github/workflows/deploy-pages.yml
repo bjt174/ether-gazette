@@ -1,0 +1,83 @@
+name: Deploy Ether Gazette to GitHub Pages
+
+# Replaces GitHub's implicit "Deploy from a branch" pipeline, which deploys
+# once with no retry. A single transient Pages backend error ("Deployment
+# failed, try again later.") there silently leaves the site serving the
+# previous week's issue. This workflow retries the deploy step with backoff so
+# the weekly publish survives those transient failures.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Least privilege needed to publish Pages via OIDC.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never cancel an in-flight deployment; let publishes queue and run to completion.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Assemble static site
+        # Copy the flat site (everything except VCS/CI internals) and disable
+        # Jekyll so files are published byte-for-byte, exactly as committed.
+        run: |
+          mkdir -p _site
+          rsync -a --exclude='.git' --exclude='.github' --exclude='_site' ./ _site/
+          touch _site/.nojekyll
+
+      - name: Configure Pages
+        # enablement: true switches the repo's Pages source to "GitHub Actions"
+        # if it is still on "Deploy from a branch", so this workflow becomes the
+        # authoritative deployer.
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.a1.outputs.page_url || steps.a2.outputs.page_url || steps.a3.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages (attempt 1)
+        id: a1
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+
+      - name: Backoff before attempt 2
+        if: steps.a1.outcome == 'failure'
+        run: sleep 30
+
+      - name: Deploy to GitHub Pages (attempt 2)
+        id: a2
+        if: steps.a1.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+
+      - name: Backoff before attempt 3
+        if: steps.a1.outcome == 'failure' && steps.a2.outcome == 'failure'
+        run: sleep 60
+
+      - name: Deploy to GitHub Pages (attempt 3, final)
+        id: a3
+        # No continue-on-error: a genuine, persistent failure must surface here.
+        if: steps.a1.outcome == 'failure' && steps.a2.outcome == 'failure'
+        uses: actions/deploy-pages@v4
