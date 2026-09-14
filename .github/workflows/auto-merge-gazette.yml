@@ -1,0 +1,52 @@
+name: Auto-merge Ether Gazette weekly issue
+
+# The weekly publishing routine runs as a Claude Code session that is
+# restricted to pushing only to its own claude/* branch (never directly to
+# main), so every weekly issue arrives as a pull request instead of a
+# direct push. Without this workflow, someone has to open GitHub and click
+# "Merge" by hand every week before the new issue goes live on Pages.
+#
+# This workflow does that merge automatically, but only when it's safe:
+# the PR must come from a claude/* branch, target main, and touch nothing
+# but the known weekly-content files. A PR that touches style.css, app.js,
+# favicon.svg, workflow files, or anything else is left for manual review
+# — this only automates the routine, unchanging part of the job.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    if: startsWith(github.event.pull_request.head.ref, 'claude/') && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify only weekly-content files changed
+        id: check
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: files } = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              per_page: 100,
+            });
+            const allowed = /^(issue-\d{4}-\d{2}-\d{2}\.html|index\.html|issues\.json|search-index\.json)$/;
+            const safe = files.length > 0 && files.every(f => allowed.test(f.filename));
+            if (!safe) {
+              core.info('Files changed: ' + files.map(f => f.filename).join(', '));
+            }
+            core.setOutput('safe', safe ? 'true' : 'false');
+
+      - name: Merge pull request
+        if: steps.check.outputs.safe == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr merge --merge --repo "${{ github.repository }}" "${{ github.event.pull_request.number }}"
