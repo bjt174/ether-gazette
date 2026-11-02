@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>The Ether Gazette — November 2, 2026</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem('eg-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body>
+<button class="ctl hamburger" id="hamburger" aria-label="Open archive and search">&#9776;</button>
+<button class="ctl theme-toggle" id="themeToggle" aria-label="Switch to light mode">&#9728;</button>
+<div class="overlay" id="overlay"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sb-title">The Ether Gazette</div><div class="sb-sub">Archive &amp; Search</div>
+  <input class="search" id="search" type="search" placeholder="Search all issues&hellip;" autocomplete="off">
+  <div class="results" id="results"></div>
+  <nav class="archive" id="archive"><div class="archive-head">Browse the Archive</div><div id="tree"></div></nav>
+</aside>
+<main class="main"><div class="paper">
+  <header class="masthead">
+    <div class="eyebrow">A Weekly Dispatch for the Student Registered Nurse Anesthetist</div>
+    <h1 class="title">The Ether Gazette</h1>
+    <div class="tagline">&ldquo;Vigilance, distilled.&rdquo;</div>
+    <div class="folio"><span>Week of November 2, 2026</span><span>Vol. 1, No. 19</span><span>Est. 2026</span></div>
+  </header>
+
+  <section class="section">
+    <div class="section-label"><span class="ico">📰</span><span class="lbl">Headlines</span></div>
+
+    <div class="item">
+      <h3 class="story">CMS's Final 2027 Fee Schedule Misses Its Own November 1 Precedent, Leaving Anesthesia's Rate Cut Unresolved</h3>
+      <p class="story-body">Last week's dispatch noted that CMS's own track record &mdash; last cycle's final rule landed October 31 &mdash; pointed to a release "any day." That day has now passed without one. As of this writing, the proposed CY 2027 Medicare Physician Fee Schedule remains just that: a proposal, with the anesthesia conversion factor still set to fall to $20.4165 for Qualifying APM participants (down 0.89%) and $20.2143 for everyone else (down 1.38%) if finalized as written. The delay leaves group practices and ASC-based anesthesia programs budgeting for January 1 without the one number they need most, and it stretches out the window in which ASA's eleventh-hour advocacy &mdash; its comment letter asked CMS to drop a proposed 50% cut tied to modifier 25 and add transparency to anesthesia-specific cost adjustments &mdash; could still move the final text. A rule finalized even a few weeks late still takes effect January 1 under the statute, so the practical deadline hasn't moved; only the planning runway has gotten shorter.</p>
+      <p class="source">CMS &middot; <a href="https://www.cms.gov/medicare/payment/fee-schedules/physician/federal-regulation-notices/cms-1848-p" target="_blank" rel="noopener">CY 2027 Medicare Physician Fee Schedule (CMS-1848-P)</a></p>
+    </div>
+
+    <div class="item">
+      <h3 class="story">An Anesthesia Staffing Company Makes the Case Against Getting Comfortable</h3>
+      <p class="story-body">NorthStar Anesthesia, the Irving, Texas-based practice management company, is telling hospital partners not to mistake the current lull in anesthesia staffing for a resolved problem. CEO Adam Spiegel says the market has settled into relative calm after the post-pandemic disruption of 2021&ndash;2023, and that calm is itself the risk: hospitals that aren't short-staffed today are deprioritizing a review of their anesthesia coverage arrangements, even as NorthStar reports evaluating roughly three times as many prospective Dallas&ndash;Fort Worth partnerships in the back half of 2026 as it did in the first quarter &mdash; a sign, the company argues, that underlying demand for coverage help hasn't gone away, just gone quiet. "Stability today doesn't guarantee stability tomorrow," Spiegel said, urging administrators to ask whether their current anesthesia model will still work six months to two years out rather than whether it's working now. The company's own deal pipeline is self-reported and doesn't prove a market-wide trend, but it's a useful counterweight to any sense that the provider-shortage story of the last few years is over.</p>
+      <p class="source">Becker's ASC &middot; <a href="https://www.beckersasc.com/?p=111215" target="_blank" rel="noopener">NorthStar's Case Against Getting Complacent With Anesthesia Stability</a></p>
+    </div>
+
+    <div class="item">
+      <h3 class="story">USAP's Court-Ordered Overhaul Enters Its Final Weeks, With the FTC Watching the Clock</h3>
+      <p class="story-body">The 180-day window the FTC gave US Anesthesia Partners to implement its antitrust settlement &mdash; a deal reached in principle in April and stayed by a federal judge in the Southern District of Texas in late May &mdash; runs out in the back half of November. The settlement's specific terms are still confidential while USAP executes them, and the company hasn't been required to admit wrongdoing. What has been made public is the stakes if USAP falls short: the FTC has said that if the company fails to complete the agreed relief on schedule, the agency will return to court and litigate the underlying acquisition allegations rather than simply grant more time. Welsh Carson, the private-equity firm that financed USAP's rollup of Texas anesthesia practices, settled its own piece of the case separately in early 2025 and must now notify the FTC before any further hospital-based physician-practice acquisitions. A separate private antitrust suit against USAP continues on its own track no matter how the FTC's clock runs out.</p>
+      <p class="source">FTC &middot; <a href="https://www.ftc.gov/news-events/news/press-releases/2026/04/ftc-charts-path-restore-competition-texas-anesthesia-markets-usap-litigation" target="_blank" rel="noopener">FTC Charts Path to Restore Competition in Texas Anesthesia Markets in USAP Litigation</a></p>
+    </div>
+
+    <div class="item">
+      <h3 class="story">Months Later, the Huons Local-Anesthetic Recall Is Still Open &mdash; a Reminder to Check Kit Contents, Not Just Vials</h3>
+      <p class="story-body">Huons Co.'s recall of lidocaine HCl injection and bupivacaine HCl in dextrose injection, first issued in April 2026 and expanded repeatedly since, remains an open FDA Class I recall with no termination notice as of this week. The complicating detail for anesthesia providers is that the exposure isn't limited to vials ordered directly from Huons: downstream repackagers built the affected lots into prefilled procedure kits and trays, and the scope widened again in May to catch 0.9% saline ampules bundled into some of the same kits. B. Braun pulled several spinal-anesthesia procedure kit lines outright; Arrow asked customers to discard the affected saline components while reusing the rest of the kit. Seven months in, the practical lesson hasn't changed: a kit's outer label often won't flag a recalled inner component, so pharmacy and OR staff checking lot numbers against the FDA's recall database need to open the kit, not just scan the box.</p>
+      <p class="source">Express Scripts &middot; <a href="https://www.express-scripts.com/notices/recall/huons-recalls-lidocaine-injection-and-bupivacaine-dextrose-injection" target="_blank" rel="noopener">Huons Recalls Lidocaine Injection and Bupivacaine in Dextrose Injection</a></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-label"><span class="ico">🎓</span><span class="lbl">Upcoming Webinars</span></div>
+
+    <div class="item">
+      <h3 class="story">Nurse Anesthesia Update <span class="tag paid">Paid</span></h3>
+      <div class="webinar-meta">AANA-approved / Barbara McNulty &middot; November 30&ndash;December 3, 2026 &middot; Atlantis Paradise Island, Bahamas, in-person</div>
+      <p class="story-body">A four-day prior-approved continuing-education course offering 20 CEC at the Atlantis resort &mdash; a destination-course option for SRNAs and CRNAs who want to pair a large block of credit hours with travel. Confirm current tuition and registration directly with the organizer before booking.</p>
+      <p class="reg">Registration via <a href="https://www.aana.com/events/" target="_blank" rel="noopener">aana.com/events</a> &rarr;</p>
+    </div>
+
+    <div class="item">
+      <h3 class="story">Challenges in Anesthesia <span class="tag paid">Paid</span></h3>
+      <div class="webinar-meta">ASA / Northwest Anesthesia Seminars &middot; December 5&ndash;6, 2026 &middot; Live virtual weekend</div>
+      <p class="story-body">A two-day live virtual weekend conference offering 15 AMA PRA Category 1 Credits, opening with neuroanesthesia fundamentals and advanced neuroanesthesia topics before moving into informed consent in anesthesia on day two. Registration tiers run $595&ndash;$695 depending on timing, with a $375 single-day option; a $100 late-cancellation fee applies as of this week.</p>
+      <p class="reg">Registration at <a href="https://nwas2.northwestseminars.com/webinar/view/ChallengesinAnesthesia/V0tqdg" target="_blank" rel="noopener">northwestseminars.com</a> &rarr;</p>
+    </div>
+
+    <div class="item">
+      <h3 class="story">Current Topics in Anesthesia <span class="tag paid">Paid</span></h3>
+      <div class="webinar-meta">Northwest Anesthesia Seminars &middot; December 7&ndash;10, 2026 &middot; Eau Palm Beach Resort &amp; Spa, Palm Beach, FL, in-person</div>
+      <p class="story-body">A four-day in-person course offering 20 CEC/AMA PRA Category 1 Credits at a Florida resort venue &mdash; a broad clinical refresher rather than a single-subspecialty deep dive, open to both CRNA and physician-anesthesiologist tracks at the same tuition tiers.</p>
+      <p class="reg">Registration at <a href="https://nwas2.northwestseminars.com/webinar/view/CurrentTopicsinAnesthesia/V0tUdA" target="_blank" rel="noopener">northwestseminars.com</a> &rarr;</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-label"><span class="ico">📚</span><span class="lbl">From the Literature</span></div>
+    <div class="item">
+      <h3 class="story">A Trial Stopped Early Finds That Simply Holding One Dose of a GLP-1 Agonist Before Endoscopy Sharply Cuts Retained Stomach Contents</h3>
+      <p class="story-body">Last week's meta-analysis quantified how much more residual gastric content shows up on GLP-1 agonists; this randomized trial tests an actual fix. The OCULUS trial randomized adults on a stable dose of a GLP-1 or GLP-1/GIP agonist for at least a month to either hold or continue their usual dose before a scheduled upper endoscopy. The results were stark enough to stop the trial early: clinically significant residual gastric volume occurred in just 3.1% of patients who held their dose versus 25.0% of those who continued it. In the subgroup undergoing upper endoscopy alone (no same-day colonoscopy), the gap widened further &mdash; 5.0% versus 46.7%. Patients who also followed a clear-liquid diet the day before the procedure had no primary-outcome events in either arm, suggesting dietary prep may matter as much as the hold itself. Continuing the medication did not raise the rate of other adverse events, so the tradeoff isn't safety against convenience &mdash; it's a simple scheduling choice with a measurable payoff. The trial was small (stopped at 60 patients total after crossing a prespecified efficacy boundary) and endoscopy-specific, so the effect size may not translate directly to the longer fasting intervals and different sedation depth of a general-anesthesia OR case, but it's the first randomized evidence that a brief hold meaningfully changes gastric content on this drug class, not just an observed association.</p>
+      <p class="source">JAMA Internal Medicine &middot; Ahmad, A. I., et al. (2026). Holding vs continuing GLP-1/GIP agonists before upper endoscopy: The OCULUS randomized clinical trial. <i>JAMA Internal Medicine, 186</i>(5), 578&ndash;584. <a href="https://doi.org/10.1001/jamainternmed.2026.0027" target="_blank" rel="noopener">https://doi.org/10.1001/jamainternmed.2026.0027</a></p>
+      <p class="story-body">Published March 2026 &mdash; well within the five-year window, though its endoscopy-only population means the perioperative translation is still an open question.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-label"><span class="ico">⚖️</span><span class="lbl">Legislation &amp; Scope Tracker</span></div>
+
+    <div class="item">
+      <h3 class="story">A Nursing-Workforce Bill With CRNA Education Money Attached Clears Committee, Awaits a Full Senate Vote</h3>
+      <p class="story-body">The Title VIII Nursing Workforce Reauthorization Act of 2025 (S. 1874) &mdash; which would renew federal funding for nurse anesthesia and other advanced-practice nursing education programs &mdash; advanced out of the Senate HELP Committee on a lopsided bipartisan vote in late July, picking up the National Nursing Workforce Center Act and the Nurse Faculty Shortage Reduction Act as amendments along the way. AANA has pushed for the bill specifically because Title VIII dollars fund CRNA program faculty and clinical-training capacity at a moment the association says the field needs roughly 2,400 new graduates a year just to keep pace with projected retirements. Three months on, the bill has not reached a full Senate floor vote, and companion action in the House has not surfaced in available tracking. For SRNAs, the practical relevance is upstream rather than immediate: this is funding for the pipeline that trains the next cohort, not a scope-of-practice change for current clinicians, and it joins a list of workforce bills that have cleared committee in prior Congresses without reaching the President's desk.</p>
+      <p class="source">Senate HELP Committee &middot; <a href="https://www.collins.senate.gov/newsroom/senator-collins-bipartisan-bill-to-strengthen-americas-nursing-workforce-advances-out-of-committee" target="_blank" rel="noopener">Bipartisan Bill to Strengthen America's Nursing Workforce Advances Out of Committee</a></p>
+    </div>
+
+    <div class="item">
+      <h3 class="story">Rhode Island's Pending Bill Would Add a Two-Year Experience Threshold to Full CRNA Practice Authority</h3>
+      <p class="story-body">Rhode Island H7426, introduced in January, would remove the state's physician-supervision requirement for CRNAs who have at least two years of experience &mdash; a middle path between the all-or-nothing opt-out model most states have used and the status quo supervision requirement. If enacted, the change would take effect January 1, 2027. The experience threshold is the detail worth flagging for SRNAs tracking where they might eventually want to practice: it would create a two-tier scope within the same state, where newly graduated CRNAs remain under supervision while experienced colleagues do not, a structure distinct from the binary opt-out/non-opt-out map AANA otherwise tracks nationally. The bill's current procedural status in the Rhode Island legislature is not clearly resolved in available tracking, so treat its prospects as unsettled rather than advancing.</p>
+      <p class="source">BillTrack50 &middot; <a href="https://www.billtrack50.com/billdetail/1958546" target="_blank" rel="noopener">Rhode Island H7426</a></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-label"><span class="ico">💊</span><span class="lbl">FDA Drug Shortage Watch</span></div>
+    <p class="table-intro">Selected anesthesia-relevant entries from the FDA Drug Shortages database this week. Status is materially unchanged from last week's listing; no new listings or resolutions were confirmed.</p>
+    <table>
+      <tr><th>Drug</th><th>Status</th><th>Detail</th></tr>
+      <tr><td>Etomidate injection</td><td class="status s-active">Active</td><td>Remains on the current-shortage list, unchanged from recent weeks.</td></tr>
+      <tr><td>Rocuronium bromide injection</td><td class="status s-active">Active</td><td>Current shortage persists across multiple manufacturers.</td></tr>
+      <tr><td>Midazolam HCl injection</td><td class="status s-active">Active</td><td>Still listed as a current shortage.</td></tr>
+      <tr><td>Dexmedetomidine HCl injection</td><td class="status s-active">Active</td><td>Confirmed active shortage; also carries a separate manufacturer-discontinuation entry.</td></tr>
+      <tr><td>Bupivacaine HCl injection (&plusmn; epinephrine)</td><td class="status s-active">Active</td><td>Current shortage persists &mdash; see this week's headline on the related Huons recall.</td></tr>
+      <tr><td>Lidocaine HCl injection</td><td class="status s-active">Active</td><td>Remains on the current-shortage list; also entangled with the open Huons recall.</td></tr>
+      <tr><td>Ropivacaine HCl injection</td><td class="status s-active">Active</td><td>Remains on the current-shortage list.</td></tr>
+      <tr><td>Epinephrine bitartrate / lidocaine HCl injection</td><td class="status s-active">Active</td><td>Carried over as a current shortage from last week's update.</td></tr>
+      <tr><td>Succinylcholine chloride injection</td><td class="status s-partial">Discontinued (one mfr.)</td><td>Still a manufacturer discontinuation; confirm an alternate source is shipping with pharmacy.</td></tr>
+      <tr><td>Cisatracurium besylate injection</td><td class="status s-partial">Discontinuation</td><td>Carried over; confirm an alternate nondepolarizing agent is stocked locally.</td></tr>
+      <tr><td>Neostigmine methylsulfate injection</td><td class="status s-partial">Discontinuation</td><td>Carried over &mdash; see this week's Knowledge Pearl on reversal-agent alternatives.</td></tr>
+      <tr><td>Epinephrine injection (plain)</td><td class="status s-partial">Discontinuation</td><td>Manufacturer discontinuation, not a current shortage; see the combination product above.</td></tr>
+      <tr><td>Propofol, vecuronium, sugammadex, norepinephrine, phenylephrine, vasopressin</td><td class="status s-resolved">Not currently listed</td><td>None returned an active entry this week &mdash; verify locally, since national listing status can lag regional gaps.</td></tr>
+    </table>
+    <p class="table-intro">Source: FDA Drug Shortages Database (accessed November 2, 2026). Confirm against your own pharmacy's supply before assuming availability.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-label"><span class="ico">💡</span><span class="lbl">Knowledge Pearl</span></div>
+    <div class="pearl">
+      <p>With neostigmine discontinued by at least one manufacturer and rocuronium still short, why sugammadex reverses neuromuscular blockade by a completely different mechanism &mdash; and why that mechanism has limits of its own.</p>
+      <p>Neostigmine reverses nondepolarizing blockade indirectly: it inhibits acetylcholinesterase, raising synaptic acetylcholine so it can out-compete the blocking agent at the nicotinic receptor. That's why neostigmine's effect is a race against the blocker's own receptor occupancy &mdash; it works reliably only once spontaneous recovery has already begun (at least a train-of-four count of 2), and it comes with real antimuscarinic side effects (bradycardia, secretions) that require co-administration with an anticholinergic like glycopyrrolate. <strong>Sugammadex works by a completely different route: it's a modified gamma-cyclodextrin that physically encapsulates rocuronium or vecuronium molecules in a tight hydrophobic cavity, pulling them out of circulation and off the neuromuscular junction entirely rather than out-competing them there.</strong> Because it removes the blocker rather than racing it, sugammadex can reverse even profound, deep blockade (post-tetanic count as low as 1&ndash;2) that neostigmine cannot touch, and it does so without antimuscarinic side effects since it never interacts with acetylcholinesterase or muscarinic receptors at all.</p>
+      <p>The mechanism-driven limit worth remembering for boards: sugammadex's encapsulation chemistry is specific to the aminosteroid nondepolarizing agents (rocuronium, vecuronium) and does nothing for benzylisoquinolinium agents like cisatracurium, which still requires neostigmine for reversal. With cisatracurium currently a discontinuation entry nationally, a unit that has leaned on sugammadex for its rocuronium cases may find itself with fewer good options if cisatracurium supply tightens further and neostigmine remains hard to source &mdash; a supply-chain squeeze that lines up uncomfortably well with this week's shortage table.</p>
+    </div>
+  </section>
+
+  <section class="section history">
+    <div class="section-label"><span class="ico">🕰️</span><span class="lbl">This Week in Anesthesia History</span></div>
+    <div class="dateline">November 7, 1846</div>
+    <p class="story-body">Three weeks after William Morton's famous public demonstration at the Ether Dome, surgeon George Hayward performed a leg amputation and a lower-jaw removal under ether anesthesia at Massachusetts General Hospital on November 7, 1846 &mdash; among the earliest cases to show that Morton's October 16 demonstration was not a one-off stunt but a repeatable clinical technique. Hayward's willingness to put ether to use so quickly, on two very different operations in rapid succession, helped convert a sensational first public showing into a working surgical practice within weeks rather than years. News of the method crossed the Atlantic within months, and by December 1846 surgeons in London were administering ether of their own accord. It's a useful corrective to the Ether Dome's outsized place in the popular history: the technique's staying power was earned in these fast, unglamorous follow-up cases, not in the single dramatic first demonstration that gets all the attention.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-label"><span class="ico">🧠</span><span class="lbl">Board Question of the Week</span></div>
+    <div class="quiz">
+      <p class="stem">A patient received rocuronium for intubation, and at the end of a long case the train-of-four count is 1 with no palpable fade. The surgical team needs the patient extubated promptly. Which reversal strategy is most appropriate, and why?</p>
+      <div class="choices">
+        <button class="choice" data-correct="false"><span class="ltr">A</span><span>Administer neostigmine 70 mcg/kg with glycopyrrolate now, since any degree of blockade can be reversed by increasing acetylcholine at the junction</span></button>
+        <button class="choice" data-correct="true"><span class="ltr">B</span><span>Administer sugammadex at a dose appropriate for deep blockade, since encapsulating the rocuronium directly does not depend on waiting for spontaneous recovery to begin</span></button>
+        <button class="choice" data-correct="false"><span class="ltr">C</span><span>Wait for the train-of-four count to reach 2&ndash;3 before giving any reversal agent, since no reversal agent is effective at a train-of-four count of 1</span></button>
+        <button class="choice" data-correct="false"><span class="ltr">D</span><span>Give neostigmine now and plan to redose in 10 minutes if clinical signs of residual weakness persist</span></button>
+      </div>
+      <div class="rationale">
+        <h4>Correct answer: B &mdash; sugammadex is the mechanism-appropriate choice at deep blockade</h4>
+        <p>A train-of-four count of 1 represents deep-to-moderate residual blockade. Sugammadex encapsulates rocuronium molecules directly, removing them from the neuromuscular junction regardless of how much spontaneous recovery has occurred, which is why it is effective at this depth of block and even deeper (post-tetanic count 1&ndash;2). Neostigmine, by contrast, works by increasing acetylcholine to out-compete the blocker at the receptor &mdash; a strategy that only succeeds once the blocker's own receptor occupancy has started to fall, conventionally at a train-of-four count of at least 2. Giving neostigmine at a count of 1 risks inadequate reversal and the complications of residual neuromuscular blockade.</p>
+        <p>A and D both apply neostigmine's logic at a depth of block where it is unreliable. C is overly conservative and clinically impractical &mdash; it is true that neostigmine specifically is unreliable at this depth, but the stem asks for the most appropriate strategy now, and sugammadex makes waiting unnecessary.</p>
+      </div>
+      <button class="reset">Try again</button></div>
+  </section>
+
+  <footer class="colophon">THE ETHER GAZETTE &middot; November 2, 2026<br>Not medical advice &mdash; verify all clinical and regulatory content against primary sources before acting on it.</footer>
+</div></main>
+<script src="app.js"></script>
+</body>
+</html>
